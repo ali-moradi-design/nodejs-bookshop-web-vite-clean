@@ -1,6 +1,6 @@
 # nodejs-bookshop-web-vite-clean
 
-**Vite + React + TypeScript SPA** bookstore frontend (Clean Architecture) for the the layered Mongo API  
+**Vite + React + TypeScript SPA** bookstore frontend with Clean Architecture for the layered Mongo API  
 [`nodejs-bookshop-layered`](https://github.com/ali-moradi-design/nodejs-bookshop-layered).
 
 > **This is not Next.js.** It is a client-side SPA created with Vite + React Router.  
@@ -9,8 +9,8 @@
 ## Stack
 
 - **Vite** · React 19 · TypeScript (strict) · React Router
-- **Clean Architecture** (`src/app`, `src/features`, `src/shared`)
-- Architecture guide: [`docs/Clean Architecture.md`](./docs/Clean Architecture.md) · `pnpm check:architecture`
+- **Clean Architecture** (`domain` / `application` / `infrastructure` / `presentation` / `app` / `shared`)
+- Architecture guide: [`docs/clean-architecture.md`](./docs/clean-architecture.md) · `pnpm check:architecture`
 - Tailwind CSS v4 · shadcn/ui · Kokonut UI registry (`@kokonutui`)
 - TanStack Query · TanStack Table
 - React Hook Form + Zod

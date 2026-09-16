@@ -74,3 +74,14 @@ pnpm check:architecture
 Fails on leftover `src/features`, domain/application importing outer layers, presentation importing infrastructure HTTP/repos/storage/composition, and shared importing app layers.
 
 ESLint `no-restricted-imports` mirrors these rules.
+
+## Folder map (presentation)
+
+```
+presentation/
+  components/<area>/   # auth, catalog, cart, admin-*, …
+  hooks/<area>/        # React Query hooks → useDependencies()
+  pages/               # route screens (*Page.tsx)
+  providers/           # DependenciesProvider
+  lib/                 # presentation-only helpers (URL filters, snapshot adapters)
+```
