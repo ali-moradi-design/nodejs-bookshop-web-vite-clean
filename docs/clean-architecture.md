@@ -30,12 +30,14 @@ shared is cross-cutting but must not depend on domain/application/…
 ## DI wiring
 
 ```ts
+// app/di.ts — composition root singleton
+const dependencies = getOrCreateDependencies(); // wraps createDependencies()
+
 // app/providers
-const dependencies = useMemo(() => createDependencies(), []);
 <DependenciesProvider dependencies={dependencies}>…</DependenciesProvider>
 ```
 
-`createDependencies()` (in `infrastructure/composition`) binds HTTP repositories into use-case factories and returns an `AppDependencies` facade. Presentation uses `useDependencies()` (React) or `getAppDependencies()` (auth store).
+`createDependencies()` (in `infrastructure/composition`) binds HTTP repositories into use-case factories and returns an `AppDependencies` facade. `app/di.ts` caches that facade for the SPA session. Presentation uses `useDependencies()` (React) or `getAppDependencies()` (auth store).
 
 ## Use-case list (facade)
 

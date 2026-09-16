@@ -1,6 +1,5 @@
-import { useMemo } from 'react';
 import { Toaster } from 'sonner';
-import { createDependencies } from '@/infrastructure/composition';
+import { getOrCreateDependencies } from '@/app/di';
 import { DependenciesProvider } from '@/presentation/providers/dependencies-provider';
 import { QueryProvider } from './query-provider';
 import { ThemeProvider } from './theme-provider';
@@ -8,7 +7,7 @@ import { I18nProvider } from './i18n-provider';
 import { AuthBootstrap } from './auth-bootstrap';
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
-  const dependencies = useMemo(() => createDependencies(), []);
+  const dependencies = getOrCreateDependencies();
 
   return (
     <DependenciesProvider dependencies={dependencies}>
