@@ -35,6 +35,7 @@ const INFRA_INTERNAL = [
   '@/infrastructure/http',
   '@/infrastructure/repositories',
   '@/infrastructure/storage',
+  '@/infrastructure/api',
 ];
 
 for (const file of walk(ROOT)) {

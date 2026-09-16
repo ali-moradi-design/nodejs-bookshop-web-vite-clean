@@ -1,3 +1,4 @@
+import { mapUserDto } from '@/infrastructure/api/mappers';
 import { apiDelete, apiGet, apiPatch, apiPost } from '@/infrastructure/http';
 import type { ApiData, ApiMessage } from '@/infrastructure/http';
 import type {
@@ -9,27 +10,36 @@ import type {
 } from '@/domain';
 
 export const authRepositoryHttp: IAuthRepository = {
-  login: (email, password) =>
-    apiPost<AuthResponse>('/auth/login', { email, password }, { skipRefresh: true }),
-  register: (input) => apiPost<AuthResponse>('/auth/register', input, { skipRefresh: true }),
+  async login(email, password) {
+    const res = await apiPost<AuthResponse>(
+      '/auth/login',
+      { email, password },
+      { skipRefresh: true },
+    );
+    return { ...res, user: mapUserDto(res.user) };
+  },
+  async register(input) {
+    const res = await apiPost<AuthResponse>('/auth/register', input, { skipRefresh: true });
+    return { ...res, user: mapUserDto(res.user) };
+  },
   async logout() {
     await apiPost<{ message: string }>('/auth/logout', {}, { skipRefresh: true });
   },
   refreshSession: () => apiPost<AuthResponse>('/auth/refresh', {}, { skipRefresh: true }),
   async fetchMe() {
-    return (await apiGet<ApiData<User>>('/users/me')).data;
+    return mapUserDto((await apiGet<ApiData<User>>('/users/me')).data);
   },
   async updateUser(id, input: UpdateUserInput) {
-    return (await apiPatch<ApiData<User>>(`/users/${id}`, input)).data;
+    return mapUserDto((await apiPatch<ApiData<User>>(`/users/${id}`, input)).data);
   },
   async listUsers() {
-    return (await apiGet<ApiData<User[]>>('/users')).data;
+    return (await apiGet<ApiData<User[]>>('/users')).data.map(mapUserDto);
   },
   async getUser(id) {
-    return (await apiGet<ApiData<User>>(`/users/${id}`)).data;
+    return mapUserDto((await apiGet<ApiData<User>>(`/users/${id}`)).data);
   },
   async createUser(input: CreateUserInput) {
-    return (await apiPost<ApiData<User>>('/users', input)).data;
+    return mapUserDto((await apiPost<ApiData<User>>('/users', input)).data);
   },
   async deleteUser(id) {
     await apiDelete<ApiMessage>(`/users/${id}`);

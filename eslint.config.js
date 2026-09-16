@@ -62,6 +62,8 @@ export default tseslint.config(
                 '@/infrastructure/repositories/*',
                 '@/infrastructure/storage',
                 '@/infrastructure/storage/*',
+                '@/infrastructure/api',
+                '@/infrastructure/api/*',
                 '@/infrastructure/composition',
                 '@/infrastructure/composition/*',
               ],

@@ -1,3 +1,4 @@
+import { mapBookDto, mapBooksDto } from '@/infrastructure/api/mappers';
 import { apiDelete, apiGet, apiPatch, apiPost, apiUpload } from '@/infrastructure/http';
 import type { ApiData, ApiMessage, ApiPaginated } from '@/infrastructure/http';
 import type {
@@ -10,22 +11,23 @@ import type {
 
 export const bookRepositoryHttp: IBookRepository = {
   async list(params = {}) {
-    return apiGet<ApiPaginated<Book>>(
+    const res = await apiGet<ApiPaginated<Book>>(
       '/books',
       params as Record<string, string | number | boolean | undefined>,
     );
+    return { data: mapBooksDto(res.data), meta: res.meta };
   },
   async getFeatured() {
-    return (await apiGet<ApiData<Book[]>>('/books/featured')).data;
+    return mapBooksDto((await apiGet<ApiData<Book[]>>('/books/featured')).data);
   },
   async getById(id) {
-    return (await apiGet<ApiData<Book>>(`/books/${id}`)).data;
+    return mapBookDto((await apiGet<ApiData<Book>>(`/books/${id}`)).data);
   },
   async create(input: CreateBookInput) {
-    return (await apiPost<ApiData<Book>>('/books', input)).data;
+    return mapBookDto((await apiPost<ApiData<Book>>('/books', input)).data);
   },
   async update(id, input: UpdateBookInput) {
-    return (await apiPatch<ApiData<Book>>(`/books/${id}`, input)).data;
+    return mapBookDto((await apiPatch<ApiData<Book>>(`/books/${id}`, input)).data);
   },
   async delete(id) {
     await apiDelete<ApiMessage>(`/books/${id}`);
