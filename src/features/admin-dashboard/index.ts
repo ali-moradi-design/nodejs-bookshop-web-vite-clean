@@ -8,7 +8,6 @@ export {
 export { useDashboardSummaryQuery } from './api/use-dashboard-summary-query';
 export { useRecentOrdersQuery } from './api/use-recent-orders-query';
 export { useLowStockQuery } from './api/use-low-stock-query';
-export { AdminCharts } from './ui/admin-charts';
 export { AdminDashboardPage } from './ui/AdminDashboardPage';
 export { AdminAnalyticsPage } from './ui/AdminAnalyticsPage';
 

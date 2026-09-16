@@ -1,3 +1,4 @@
+/** App router — composes layout shells and feature public page exports only. */
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { AppProviders } from '@/app/providers';

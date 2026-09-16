@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BookCard, type Book } from '@/features/catalog';
+import { BookCard } from '@/features/catalog';
 import { FavoriteToggleButton } from '@/features/favorites';
 import { useAuthStore } from '@/features/auth';
 import { readRecentlyViewed, type RecentBookSnapshot } from '../model/recently-viewed';
