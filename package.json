@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Bookstore frontend SPA (Vite + React + TypeScript) using feature-based architecture. Companion UI for nodejs-bookshop-layered. Forked from nodejs-bookshop-web-vite (FSD) and migrated to vertical features.",
+  "description": "Niko Bookshop storefront SPA \u2014 Vite + React + TypeScript with feature-based architecture. Companion UI for nodejs-bookshop-layered.",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -90,5 +90,13 @@
     "*.{json,md,css}": [
       "prettier --write"
     ]
-  }
+  },
+  "keywords": [
+    "vite",
+    "react",
+    "typescript",
+    "feature-based",
+    "bookstore",
+    "i18n"
+  ]
 }

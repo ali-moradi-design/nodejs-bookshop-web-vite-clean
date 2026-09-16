@@ -40,8 +40,8 @@ Features may import from `shared` and from other features **only** through publi
 | `reviews`           | Reviews API/forms, love rating, my-reviews page                              |
 | `profile`           | Profile form, panel dashboard page                                           |
 | `home`              | Hero, recently-viewed, home page                                             |
-| `reports`           | Issue reports API/form, report page, analytics query helpers                 |
-| `admin-dashboard`   | Admin summary API, KPI cards, charts, dashboard & analytics pages            |
+| `reports`           | User issue reports API/form and report page                                  |
+| `admin-dashboard`   | Admin summary API, charts, revenue analytics, dashboard & analytics pages    |
 | `admin-books`       | Admin books CRUD panel + page                                                |
 | `admin-orders`      | Admin orders panel + page                                                    |
 | `admin-users`       | Admin users panel + page                                                     |
@@ -62,7 +62,7 @@ Root chrome composed by the router (not domain features):
 
 - **New screen / route** → owning `features/<name>/ui/*Page.tsx`, wire in `app/router`.
 - **Domain API + hooks + UI for one capability** → same feature folder.
-- **Button primitive, `cn()`, API client, theme tokens** → `shared`.
+- **Button primitive, `KpiCards`, `cn()`, API client, theme tokens** → `shared`.
 
 ## Boundary check
 
