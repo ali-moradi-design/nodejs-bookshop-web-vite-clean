@@ -49,6 +49,7 @@ export function createDependencies(): AppDependencies {
     createBook: uc.createCreateBook(books),
     updateBook: uc.createUpdateBook(books),
     deleteBook: uc.createDeleteBook(books),
+    saveBook: uc.createSaveBook(books),
     uploadBookCover: uc.createUploadBookCover(books),
 
     getCart: uc.createGetCart(cart),
@@ -83,6 +84,7 @@ export function createDependencies(): AppDependencies {
     createDiscount: uc.createCreateDiscount(discounts),
     updateDiscount: uc.createUpdateDiscount(discounts),
     deleteDiscount: uc.createDeleteDiscount(discounts),
+    saveDiscount: uc.createSaveDiscount(discounts),
     getRoles: uc.createGetRoles(roles),
     createRole: uc.createCreateRole(roles),
     updateRole: uc.createUpdateRole(roles),

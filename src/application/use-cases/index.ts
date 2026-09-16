@@ -46,3 +46,5 @@ export * from './toggle-favorite';
 export * from './submit-review';
 export * from './update-profile';
 export * from './list-recently-viewed-books';
+export * from './save-book';
+export * from './save-discount';

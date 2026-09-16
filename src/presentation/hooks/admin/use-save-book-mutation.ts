@@ -22,7 +22,7 @@ type Options = { editingId?: string | null; onSuccess?: () => void };
 export function useSaveBookMutation({ editingId = null, onSuccess }: Options = {}) {
   const { t } = useTranslation();
   const qc = useQueryClient();
-  const { createBook, updateBook } = useDependencies();
+  const { saveBook } = useDependencies();
 
   return useMutation({
     mutationFn: async (values: SaveBookValues) => {
@@ -42,8 +42,7 @@ export function useSaveBookMutation({ editingId = null, onSuccess }: Options = {
         featured: Boolean(values.featured),
         coverImageUrl: values.coverImageUrl || undefined,
       };
-      if (editingId) return updateBook(editingId, payload);
-      return createBook(payload);
+      return saveBook({ ...payload, id: editingId });
     },
     onSuccess: () => {
       toast.success(editingId ? 'Book updated' : 'Book created');

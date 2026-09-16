@@ -58,6 +58,7 @@ export interface AppDependencies {
   createBook: (input: CreateBookInput) => Promise<Book>;
   updateBook: (id: string, input: UpdateBookInput) => Promise<Book>;
   deleteBook: (id: string) => Promise<void>;
+  saveBook: (input: CreateBookInput & { id?: string | null }) => Promise<Book>;
   uploadBookCover: (file: File) => Promise<string>;
 
   getCart: () => Promise<Cart>;
@@ -92,6 +93,7 @@ export interface AppDependencies {
   createDiscount: (input: CreateDiscountInput) => Promise<Discount>;
   updateDiscount: (id: string, input: UpdateDiscountInput) => Promise<Discount>;
   deleteDiscount: (id: string) => Promise<void>;
+  saveDiscount: (input: CreateDiscountInput & { id?: string | null }) => Promise<Discount>;
   getRoles: () => Promise<Role[]>;
   createRole: (input: CreateRoleInput) => Promise<Role>;
   updateRole: (id: string, input: UpdateRoleInput) => Promise<Role>;

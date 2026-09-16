@@ -11,11 +11,10 @@ type Options = { editingId?: string | null; onSuccess?: () => void };
 export function useSaveDiscountMutation({ editingId = null, onSuccess }: Options = {}) {
   const { t } = useTranslation();
   const qc = useQueryClient();
-  const { createDiscount, updateDiscount } = useDependencies();
+  const { saveDiscount } = useDependencies();
 
   return useMutation({
-    mutationFn: (values: CreateDiscountInput) =>
-      editingId ? updateDiscount(editingId, values) : createDiscount(values),
+    mutationFn: (values: CreateDiscountInput) => saveDiscount({ ...values, id: editingId }),
     onSuccess: () => {
       toast.success('Saved');
       onSuccess?.();

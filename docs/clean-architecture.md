@@ -41,7 +41,7 @@ const dependencies = useMemo(() => createDependencies(), []);
 
 Auth/users: `login`, `loginAndFetchMe`, `register`, `registerAndFetchMe`, `logout`, `fetchMe`, `updateUser`, `updateProfile`, `listUsers`, `getUser`, `createUser`, `deleteUser`
 
-Catalog: `getBooks`, `getFeaturedBooks`, `getBook`, `createBook`, `updateBook`, `deleteBook`, `uploadBookCover`
+Catalog: `getBooks`, `getFeaturedBooks`, `getBook`, `createBook`, `updateBook`, `saveBook`, `deleteBook`, `uploadBookCover`
 
 Cart/checkout: `getCart`, `addToCart`, `updateCartItem`, `removeCartItem`, `clearCart`, `checkout`
 
@@ -53,7 +53,7 @@ Reviews: `getReviews`, `createReview`, `submitReview`, `updateReview`, `deleteRe
 
 Reports: `getIssues`, `createIssue`, `updateIssue`, `deleteIssue`
 
-Admin RBAC/discounts: `getDiscounts`, `createDiscount`, `updateDiscount`, `deleteDiscount`, `getRoles`, `createRole`, `updateRole`, `deleteRole`, `getPermissions`, `createPermission`, `updatePermission`, `deletePermission`
+Admin RBAC/discounts: `getDiscounts`, `createDiscount`, `updateDiscount`, `saveDiscount`, `deleteDiscount`, `getRoles`, `createRole`, `updateRole`, `deleteRole`, `getPermissions`, `createPermission`, `updatePermission`, `deletePermission`
 
 Admin analytics: `getDashboardSummary`, `getRecentOrders`, `getLowStock`, `getRevenue`, `getOrdersByStatus`, `getTopBooks`, `getSalesByDate`
 
