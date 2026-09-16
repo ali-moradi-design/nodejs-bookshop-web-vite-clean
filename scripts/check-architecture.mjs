@@ -1,21 +1,17 @@
 #!/usr/bin/env node
 /**
- * Feature-based architecture boundary checks.
- * Fails on: leftover FSD folders, deep cross-feature imports, shared→feature,
- * feature→app, relative escapes into other features, missing public barrels.
+ * Clean Architecture boundary checks.
+ * Fails on forbidden dependency-rule violations and leftover feature-based roots.
  */
 import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
-import { join, relative, dirname, normalize, resolve } from 'node:path';
+import { join, relative, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', 'src');
 const errors = [];
 
-const BANNED_DIRS = ['entities', 'widgets', 'pages'];
-for (const d of BANNED_DIRS) {
-  if (existsSync(join(ROOT, d))) {
-    errors.push(`Banned FSD folder still present: src/${d}`);
-  }
+if (existsSync(join(ROOT, 'features'))) {
+  errors.push('Banned feature-based folder still present: src/features');
 }
 
 function walk(dir, out = []) {
@@ -30,83 +26,97 @@ function walk(dir, out = []) {
 
 const IMPORT_RE = /from\s+['"]([^'"]+)['"]/g;
 
-function featureOf(fileRel) {
-  const m = fileRel.match(/^features\/([^/]+)/);
-  return m ? m[1] : null;
+function layerOf(fileRel) {
+  const top = fileRel.split('/')[0];
+  return top;
 }
 
-function layerOf(fileRel) {
-  return fileRel.split('/')[0];
-}
+const INFRA_INTERNAL = [
+  '@/infrastructure/http',
+  '@/infrastructure/repositories',
+  '@/infrastructure/storage',
+];
 
 for (const file of walk(ROOT)) {
   const rel = relative(ROOT, file).replaceAll('\\', '/');
   const src = readFileSync(file, 'utf8');
-  const fromFeature = featureOf(rel);
-  const fromLayer = layerOf(rel);
-  const fileDir = dirname(file);
+  const layer = layerOf(rel);
 
   for (const match of src.matchAll(IMPORT_RE)) {
     const spec = match[1];
+    if (!spec.startsWith('@/')) continue;
 
-    if (spec.startsWith('@/')) {
-      if (
-        spec.startsWith('@/entities') ||
-        spec.startsWith('@/widgets') ||
-        spec.startsWith('@/pages')
-      ) {
-        errors.push(`${rel}: banned FSD import '${spec}'`);
-        continue;
-      }
-
-      if (fromLayer === 'shared' && spec.startsWith('@/features')) {
-        errors.push(`${rel}: shared must not import features ('${spec}')`);
-      }
-
-      if (fromLayer === 'features' && spec.startsWith('@/app')) {
-        errors.push(`${rel}: features must not import app ('${spec}')`);
-      }
-
-      const fm = spec.match(/^@\/features\/([^/]+)(?:\/(.*))?$/);
-      if (fm) {
-        const toFeature = fm[1];
-        const rest = fm[2];
-        if (rest && rest !== '' && fromFeature !== toFeature) {
-          errors.push(
-            `${rel}: deep cross-feature import '${spec}' — use @/features/${toFeature}`,
-          );
-        }
-      }
+    if (spec.startsWith('@/features')) {
+      errors.push(`${rel}: leftover feature import '${spec}'`);
       continue;
     }
 
-    // Relative imports that escape into another feature
-    if (spec.startsWith('.') && fromFeature) {
-      const resolved = normalize(resolve(fileDir, spec));
-      const resolvedRel = relative(ROOT, resolved).replaceAll('\\', '/');
-      const toFeature = featureOf(resolvedRel);
-      if (toFeature && toFeature !== fromFeature) {
+    if (layer === 'domain') {
+      if (
+        spec.startsWith('@/application') ||
+        spec.startsWith('@/infrastructure') ||
+        spec.startsWith('@/presentation') ||
+        spec.startsWith('@/app') ||
+        spec.startsWith('@/shared')
+      ) {
+        errors.push(`${rel}: domain must not import '${spec}'`);
+      }
+    }
+
+    if (layer === 'application') {
+      if (
+        spec.startsWith('@/infrastructure') ||
+        spec.startsWith('@/presentation') ||
+        spec.startsWith('@/app') ||
+        spec.startsWith('@/shared')
+      ) {
+        errors.push(`${rel}: application must not import '${spec}'`);
+      }
+    }
+
+    if (layer === 'presentation') {
+      for (const banned of INFRA_INTERNAL) {
+        if (spec === banned || spec.startsWith(banned + '/')) {
+          errors.push(
+            `${rel}: presentation must not import infrastructure internals '${spec}' — use use cases / DI`,
+          );
+        }
+      }
+      // composition root wiring belongs in app/
+      if (spec.startsWith('@/infrastructure/composition') || spec === '@/infrastructure') {
         errors.push(
-          `${rel}: relative cross-feature import '${spec}' → features/${toFeature} — use @/features/${toFeature}`,
+          `${rel}: presentation must not import composition root '${spec}' — wire in app/providers`,
         );
+      }
+    }
+
+    if (layer === 'shared') {
+      if (
+        spec.startsWith('@/domain') ||
+        spec.startsWith('@/application') ||
+        spec.startsWith('@/infrastructure') ||
+        spec.startsWith('@/presentation') ||
+        spec.startsWith('@/app') ||
+        spec.startsWith('@/features')
+      ) {
+        errors.push(`${rel}: shared must not import layer '${spec}'`);
       }
     }
   }
 }
 
-const featuresRoot = join(ROOT, 'features');
-if (existsSync(featuresRoot)) {
-  for (const name of readdirSync(featuresRoot)) {
-    const p = join(featuresRoot, name);
-    if (!statSync(p).isDirectory()) continue;
-    if (!existsSync(join(p, 'index.ts'))) {
-      errors.push(`features/${name}: missing public index.ts`);
-    }
+const required = [
+  'domain',
+  'application',
+  'infrastructure',
+  'presentation',
+  'app',
+  'shared',
+];
+for (const d of required) {
+  if (!existsSync(join(ROOT, d))) {
+    errors.push(`Missing Clean Architecture layer: src/${d}`);
   }
-}
-
-if (!existsSync(join(ROOT, 'app', 'layout', 'index.ts'))) {
-  errors.push('app/layout: missing public index.ts');
 }
 
 if (errors.length) {

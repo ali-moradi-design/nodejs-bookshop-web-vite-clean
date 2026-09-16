@@ -1,0 +1,12 @@
+export type { IBookRepository } from './book-repository';
+export type { IAuthRepository } from './auth-repository';
+export type { ICartRepository } from './cart-repository';
+export type { IOrderRepository } from './order-repository';
+export type { IFavoriteRepository } from './favorite-repository';
+export type { IReviewRepository } from './review-repository';
+export type { IReportRepository } from './report-repository';
+export type { IDiscountRepository } from './discount-repository';
+export type { IRoleRepository } from './role-repository';
+export type { IPermissionRepository } from './permission-repository';
+export type { IAdminRepository } from './admin-repository';
+export type { IRecentlyViewedRepository } from './recently-viewed-repository';

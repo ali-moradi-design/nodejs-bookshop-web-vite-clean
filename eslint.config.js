@@ -31,19 +31,92 @@ export default tseslint.config(
         {
           patterns: [
             {
-              group: [
-                '@/entities',
-                '@/entities/*',
-                '@/widgets',
-                '@/widgets/*',
-                '@/pages',
-                '@/pages/*',
-              ],
-              message: 'FSD layers removed — use @/features/* or @/app/layout.',
+              group: ['@/features', '@/features/*', '@/features/*/*', '@/features/*/*/*'],
+              message: 'Feature-based layout removed — use Clean Architecture layers.',
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: [
+      'src/presentation/**/*.{ts,tsx}',
+      'src/domain/**/*.{ts,tsx}',
+      'src/application/**/*.{ts,tsx}',
+    ],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@/features', '@/features/*', '@/features/*/*'],
+              message: 'Feature-based layout removed — use Clean Architecture layers.',
             },
             {
-              group: ['@/features/*/*', '@/features/*/*/*'],
-              message: 'Import features only via public API: @/features/<name>.',
+              group: [
+                '@/infrastructure/http',
+                '@/infrastructure/http/*',
+                '@/infrastructure/repositories',
+                '@/infrastructure/repositories/*',
+                '@/infrastructure/storage',
+                '@/infrastructure/storage/*',
+                '@/infrastructure/composition',
+                '@/infrastructure/composition/*',
+              ],
+              message:
+                'Do not import infrastructure internals here — use application use cases / DI.',
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ['src/domain/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: [
+                '@/application',
+                '@/application/*',
+                '@/infrastructure',
+                '@/infrastructure/*',
+                '@/presentation',
+                '@/presentation/*',
+                '@/app',
+                '@/app/*',
+                '@/shared/api',
+                '@/shared/api/*',
+              ],
+              message: 'Domain must stay pure — no outer-layer imports.',
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ['src/application/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: [
+                '@/infrastructure',
+                '@/infrastructure/*',
+                '@/presentation',
+                '@/presentation/*',
+                '@/app',
+                '@/app/*',
+              ],
+              message: 'Application may depend on domain only.',
             },
           ],
         },

@@ -1,0 +1,11 @@
+export { bookRepositoryHttp } from './book-repository-http';
+export { authRepositoryHttp } from './auth-repository-http';
+export { cartRepositoryHttp } from './cart-repository-http';
+export { orderRepositoryHttp } from './order-repository-http';
+export { favoriteRepositoryHttp } from './favorite-repository-http';
+export { reviewRepositoryHttp } from './review-repository-http';
+export { reportRepositoryHttp } from './report-repository-http';
+export { discountRepositoryHttp } from './discount-repository-http';
+export { roleRepositoryHttp } from './role-repository-http';
+export { permissionRepositoryHttp } from './permission-repository-http';
+export { adminRepositoryHttp } from './admin-repository-http';

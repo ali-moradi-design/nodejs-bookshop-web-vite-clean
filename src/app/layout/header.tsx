@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { User } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useAuthStore } from '@/features/auth';
-import { ThemeSwitcher } from '@/features/theme';
-import { LocaleSwitcher } from '@/features/locale';
-import { HeaderBookSearch } from '@/features/catalog';
-import { CartBadgeLink } from '@/features/cart';
+import { useAuthStore } from '@/presentation/hooks/auth/auth-store';
+import { ThemeSwitcher } from '@/presentation/components/theme/theme-switcher';
+import { LocaleSwitcher } from '@/presentation/components/locale/locale-switcher';
+import { HeaderBookSearch } from '@/presentation/components/catalog/header-book-search';
+import { CartBadgeLink } from '@/presentation/components/cart/cart-badge-link';
 import { Button } from '@/shared/ui';
-import { isAdminUser } from '@/features/auth';
+import { isAdminUser } from '@/domain';
 
 export function Header() {
   const { t } = useTranslation();

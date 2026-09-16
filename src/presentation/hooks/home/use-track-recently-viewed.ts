@@ -1,0 +1,19 @@
+import { useEffect } from 'react';
+import type { Book } from '@/domain';
+import { useDependencies } from '@/presentation/providers/dependencies-provider';
+
+/** Call on book-detail mount to record a view. */
+export function useTrackRecentlyViewed(book: Book | null | undefined) {
+  const { pushRecentlyViewed } = useDependencies();
+  useEffect(() => {
+    if (!book?.id) return;
+    pushRecentlyViewed({
+      id: book.id,
+      title: book.title,
+      author: book.author,
+      price: book.price,
+      currency: book.currency,
+      coverImageUrl: book.coverImageUrl,
+    });
+  }, [book?.id]); // eslint-disable-line react-hooks/exhaustive-deps -- snapshot on id change
+}

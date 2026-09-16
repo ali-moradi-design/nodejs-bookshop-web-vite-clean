@@ -1,0 +1,21 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
+import { ApiError } from '@/shared/api';
+import { useDependencies } from '@/presentation/providers/dependencies-provider';
+import { discountKeys } from '../query-keys';
+
+export function useDeleteDiscountMutation() {
+  const { t } = useTranslation();
+  const qc = useQueryClient();
+  const { deleteDiscount } = useDependencies();
+
+  return useMutation({
+    mutationFn: (id: string) => deleteDiscount(id),
+    onSuccess: () => {
+      toast.success('Deleted');
+      void qc.invalidateQueries({ queryKey: discountKeys.all });
+    },
+    onError: (e) => toast.error(e instanceof ApiError ? e.message : t('common.error')),
+  });
+}

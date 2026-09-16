@@ -1,6 +1,6 @@
-# nodejs-bookshop-web-vite-feature
+# nodejs-bookshop-web-vite-clean
 
-**Vite + React + TypeScript SPA** bookstore frontend (feature-based architecture) for the layered Mongo API  
+**Vite + React + TypeScript SPA** bookstore frontend (Clean Architecture) for the the layered Mongo API  
 [`nodejs-bookshop-layered`](https://github.com/ali-moradi-design/nodejs-bookshop-layered).
 
 > **This is not Next.js.** It is a client-side SPA created with Vite + React Router.  
@@ -9,8 +9,8 @@
 ## Stack
 
 - **Vite** · React 19 · TypeScript (strict) · React Router
-- **Feature-based architecture** (`src/app`, `src/features`, `src/shared`)
-- Architecture guide: [`docs/feature-based.md`](./docs/feature-based.md) · `pnpm check:architecture`
+- **Clean Architecture** (`src/app`, `src/features`, `src/shared`)
+- Architecture guide: [`docs/Clean Architecture.md`](./docs/Clean Architecture.md) · `pnpm check:architecture`
 - Tailwind CSS v4 · shadcn/ui · Kokonut UI registry (`@kokonutui`)
 - TanStack Query · TanStack Table
 - React Hook Form + Zod
@@ -54,7 +54,7 @@ npm run dev   # or: npm start after build
 # ensure Mongo is up and seed once: npm run seed
 
 # terminal 2 — this Vite SPA
-cd ../nodejs-bookshop-web-vite
+cd ../nodejs-bookshop-web-vite-clean
 pnpm install && pnpm dev
 ```
 
@@ -72,6 +72,7 @@ pnpm install && pnpm dev
 | `pnpm playwright:install` | Optional bundled Chromium (needs CDN access) |
 | `pnpm storybook`          | Storybook                                    |
 | `pnpm analyze`            | Bundle visualizer (`dist/stats.html`)        |
+| `pnpm check:architecture` | Enforce Clean Architecture dependency rule   |
 
 ## Auth & API
 
@@ -112,17 +113,25 @@ With an empty `VITE_API_URL`, browser requests go to the Vite origin and are pro
 - **User panel** (`/panel`): dashboard, profile, orders (+ pay), favorites, my reviews, issue report
 - **Admin** (`/admin`): dashboard KPIs, books CRUD + cover upload, orders status, users, roles, permissions, discounts, issue reports, analytics (lazy-loaded)
 
-## Feature-based layout
+## Architecture
+
+Clean Architecture layers under `src/`:
 
 ```
 src/
-  app/          # bootstrap: providers, router, global styles, layout shells
-  features/     # vertical business slices (ui + api + model + public index.ts)
-  shared/       # ui kit, i18n, http client, config, pure lib
+  domain/           # entities + repository ports (pure)
+  application/      # use-case factories + AppDependencies facade
+  infrastructure/   # HTTP client, repository adapters, storage, composition
+  presentation/     # React components, pages, hooks (call use cases via DI)
+  app/              # router, providers (wires DI), layout, styles
+  shared/           # UI kit, i18n, config, pure utils
 ```
 
-See [`docs/feature-based.md`](./docs/feature-based.md) for the feature map and import rules.
-Run `pnpm check:architecture` to enforce boundaries.
+See [docs/clean-architecture.md](docs/clean-architecture.md) for the dependency rule, DI wiring, and use-case list.
+
+```bash
+pnpm check:architecture
+```
 
 ## Kokonut UI
 
