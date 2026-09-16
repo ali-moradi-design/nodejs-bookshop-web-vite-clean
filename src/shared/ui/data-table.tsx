@@ -8,7 +8,8 @@ import {
   type Updater,
 } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
-import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui';
+import { Button } from './button';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './table';
 
 interface DataTableProps<T> {
   columns: ColumnDef<T, unknown>[];

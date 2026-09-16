@@ -6,7 +6,7 @@ describe('apiGet', () => {
     vi.stubGlobal(
       'fetch',
       vi.fn(async (url: string) => {
-        if (String(url).includes('/books')) {
+        if (String(url).includes('/items')) {
           return new Response(
             JSON.stringify({ data: [], meta: { page: 1, limit: 12, total: 0, pages: 0 } }),
             {
@@ -23,12 +23,12 @@ describe('apiGet', () => {
     vi.unstubAllGlobals();
   });
 
-  it('fetches books list smoke', async () => {
-    const res = await apiGet<{ data: unknown[]; meta: unknown }>('/books', { q: 'x', limit: 8 });
+  it('fetches list smoke', async () => {
+    const res = await apiGet<{ data: unknown[]; meta: unknown }>('/items', { q: 'x', limit: 8 });
     expect(Array.isArray(res.data)).toBe(true);
     expect(fetch).toHaveBeenCalled();
     const calledUrl = String((fetch as unknown as ReturnType<typeof vi.fn>).mock.calls[0][0]);
-    expect(calledUrl).toContain('/api/v1/books');
+    expect(calledUrl).toContain('/api/v1/items');
     expect(calledUrl).toContain('q=x');
   });
 
