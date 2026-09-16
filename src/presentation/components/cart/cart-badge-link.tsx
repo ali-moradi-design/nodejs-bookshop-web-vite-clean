@@ -1,3 +1,4 @@
+import { cartItemCount } from '@/domain';
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
@@ -48,7 +49,7 @@ export function CartBadgeLink({ enabled = true }: Props) {
     { enabled: canFetch && open },
   );
 
-  const count = canFetch ? items.reduce((sum, item) => sum + item.quantity, 0) : 0;
+  const count = canFetch ? cartItemCount(cartQuery.data) : 0;
   const label = count > 0 ? t('nav.cartWithCount', { count }) : t('nav.cart');
 
   const rows = useMemo(

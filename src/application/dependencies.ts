@@ -46,6 +46,7 @@ export interface AppDependencies {
   logout: () => Promise<void>;
   fetchMe: () => Promise<User>;
   updateUser: (id: string, input: UpdateUserInput) => Promise<User>;
+  updateProfile: (userId: string, input: UpdateUserInput) => Promise<User>;
   listUsers: () => Promise<User[]>;
   getUser: (id: string) => Promise<User>;
   createUser: (input: CreateUserInput) => Promise<User>;
@@ -78,6 +79,7 @@ export interface AppDependencies {
 
   getReviews: (params?: ReviewListParams) => Promise<Review[]>;
   createReview: (input: CreateReviewInput) => Promise<Review>;
+  submitReview: (input: CreateReviewInput) => Promise<Review>;
   updateReview: (id: string, input: UpdateReviewInput) => Promise<Review>;
   deleteReview: (id: string) => Promise<void>;
 

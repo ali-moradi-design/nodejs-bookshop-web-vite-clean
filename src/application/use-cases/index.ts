@@ -43,3 +43,5 @@ export * from './recently-viewed';
 export * from './login-and-fetch-me';
 export * from './register-and-fetch-me';
 export * from './toggle-favorite';
+export * from './submit-review';
+export * from './update-profile';

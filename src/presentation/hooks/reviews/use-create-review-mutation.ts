@@ -10,12 +10,12 @@ type Options = { onSuccess?: () => void };
 export function useCreateReviewMutation(bookId: string, options: Options = {}) {
   const { t } = useTranslation();
   const qc = useQueryClient();
-  const { createReview } = useDependencies();
+  const { submitReview } = useDependencies();
   const { onSuccess } = options;
 
   return useMutation({
     mutationFn: (values: { rating: number; comment?: string }) =>
-      createReview({ book: bookId, ...values }),
+      submitReview({ book: bookId, ...values }),
     onSuccess: () => {
       toast.success('Review submitted');
       onSuccess?.();

@@ -17,11 +17,11 @@ type Options = {
 
 export function useUpdateProfileMutation(userId: string, { onUpdated }: Options) {
   const { t } = useTranslation();
-  const { updateUser } = useDependencies();
+  const { updateProfile } = useDependencies();
 
   return useMutation({
     mutationFn: (values: UpdateProfileValues) =>
-      updateUser(userId, {
+      updateProfile(userId, {
         name: values.name,
         email: values.email,
         ...(values.password ? { password: values.password } : {}),

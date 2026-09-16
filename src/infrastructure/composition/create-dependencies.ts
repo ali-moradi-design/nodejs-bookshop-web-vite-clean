@@ -37,6 +37,7 @@ export function createDependencies(): AppDependencies {
     logout: uc.createLogout(auth),
     fetchMe: uc.createFetchMe(auth),
     updateUser: uc.createUpdateUser(auth),
+    updateProfile: uc.createUpdateProfile(auth),
     listUsers: uc.createListUsers(auth),
     getUser: uc.createGetUser(auth),
     createUser: uc.createCreateUser(auth),
@@ -69,6 +70,7 @@ export function createDependencies(): AppDependencies {
 
     getReviews: uc.createGetReviews(reviews),
     createReview: uc.createCreateReview(reviews),
+    submitReview: uc.createSubmitReview(reviews),
     updateReview: uc.createUpdateReview(reviews),
     deleteReview: uc.createDeleteReview(reviews),
 
