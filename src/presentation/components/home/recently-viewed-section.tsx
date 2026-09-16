@@ -1,29 +1,18 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BookCard } from '@/presentation/components/catalog/book-card';
 import { FavoriteToggleButton } from '@/presentation/components/favorites/favorite-toggle-button';
 import { useAuthStore } from '@/presentation/hooks/auth/auth-store';
-import type { RecentBookSnapshot } from '@/domain';
 import { useDependencies } from '@/presentation/providers/dependencies-provider';
-import { snapshotToBook } from '@/presentation/lib/home/snapshot-to-book';
 
 export function RecentlyViewedSection({ excludeId }: { excludeId?: string }) {
   const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
-  const { readRecentlyViewed } = useDependencies();
-  const [items, setItems] = useState<RecentBookSnapshot[]>([]);
-
-  useEffect(() => {
-    setItems(readRecentlyViewed());
-  }, []);
+  const { listRecentlyViewedBooks } = useDependencies();
 
   const books = useMemo(
-    () =>
-      items
-        .filter((s) => s.id !== excludeId)
-        .map(snapshotToBook)
-        .slice(0, 8),
-    [items, excludeId],
+    () => listRecentlyViewedBooks(excludeId),
+    [listRecentlyViewedBooks, excludeId],
   );
 
   if (books.length === 0) return null;

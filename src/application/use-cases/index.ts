@@ -45,3 +45,4 @@ export * from './register-and-fetch-me';
 export * from './toggle-favorite';
 export * from './submit-review';
 export * from './update-profile';
+export * from './list-recently-viewed-books';

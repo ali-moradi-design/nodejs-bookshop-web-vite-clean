@@ -39,7 +39,7 @@ const dependencies = useMemo(() => createDependencies(), []);
 
 ## Use-case list (facade)
 
-Auth/users: `login`, `register`, `logout`, `fetchMe`, `updateUser`, `listUsers`, `getUser`, `createUser`, `deleteUser`
+Auth/users: `login`, `loginAndFetchMe`, `register`, `registerAndFetchMe`, `logout`, `fetchMe`, `updateUser`, `updateProfile`, `listUsers`, `getUser`, `createUser`, `deleteUser`
 
 Catalog: `getBooks`, `getFeaturedBooks`, `getBook`, `createBook`, `updateBook`, `deleteBook`, `uploadBookCover`
 
@@ -47,9 +47,9 @@ Cart/checkout: `getCart`, `addToCart`, `updateCartItem`, `removeCartItem`, `clea
 
 Orders: `getOrders`, `getOrder`, `payOrder`, `updateOrderStatus`
 
-Favorites: `getFavorites`, `addFavorite`, `removeFavorite`
+Favorites: `getFavorites`, `addFavorite`, `removeFavorite`, `toggleFavorite`
 
-Reviews: `getReviews`, `createReview`, `updateReview`, `deleteReview`
+Reviews: `getReviews`, `createReview`, `submitReview`, `updateReview`, `deleteReview`
 
 Reports: `getIssues`, `createIssue`, `updateIssue`, `deleteIssue`
 
@@ -57,7 +57,7 @@ Admin RBAC/discounts: `getDiscounts`, `createDiscount`, `updateDiscount`, `delet
 
 Admin analytics: `getDashboardSummary`, `getRecentOrders`, `getLowStock`, `getRevenue`, `getOrdersByStatus`, `getTopBooks`, `getSalesByDate`
 
-Local: `readRecentlyViewed`, `pushRecentlyViewed`
+Local: `readRecentlyViewed`, `pushRecentlyViewed`, `listRecentlyViewedBooks`
 
 ## Presentation layout
 

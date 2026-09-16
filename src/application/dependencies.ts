@@ -110,5 +110,6 @@ export interface AppDependencies {
   getSalesByDate: (from?: string, to?: string) => Promise<SalesByDateItem[]>;
 
   readRecentlyViewed: () => RecentBookSnapshot[];
+  listRecentlyViewedBooks: (excludeId?: string) => Book[];
   pushRecentlyViewed: (book: Omit<RecentBookSnapshot, 'viewedAt'>) => RecentBookSnapshot[];
 }

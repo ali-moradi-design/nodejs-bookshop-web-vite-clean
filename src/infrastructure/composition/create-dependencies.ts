@@ -101,6 +101,7 @@ export function createDependencies(): AppDependencies {
     getSalesByDate: uc.createGetSalesByDate(admin),
 
     readRecentlyViewed: uc.createReadRecentlyViewed(recent),
+    listRecentlyViewedBooks: uc.createListRecentlyViewedBooks(recent),
     pushRecentlyViewed: uc.createPushRecentlyViewed(recent),
   };
 }
