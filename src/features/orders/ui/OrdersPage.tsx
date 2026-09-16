@@ -10,7 +10,7 @@ import { usePreferences } from '@/shared/hooks';
 import { Alert, Badge, Button, PageLoader } from '@/shared/ui';
 import { ApiError } from '@/shared/api';
 
-export function PanelOrdersPage() {
+export function OrdersPage() {
   const { t } = useTranslation();
   const locale = usePreferences((s) => s.locale);
   const { data, isLoading, error } = useOrdersQuery();

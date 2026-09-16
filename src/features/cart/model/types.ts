@@ -1,3 +1,7 @@
+import type { ShippingAddress } from '@/features/orders';
+
+export type { ShippingAddress };
+
 export interface CartItem {
   bookId: string;
   quantity: number;
@@ -9,16 +13,6 @@ export interface Cart {
   items: CartItem[];
   updatedAt: string;
   createdAt: string;
-}
-
-export interface ShippingAddress {
-  fullName: string;
-  line1: string;
-  line2?: string;
-  city: string;
-  state?: string;
-  postalCode: string;
-  country: string;
 }
 
 export interface CheckoutInput {

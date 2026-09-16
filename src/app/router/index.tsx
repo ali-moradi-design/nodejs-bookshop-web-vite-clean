@@ -30,11 +30,9 @@ const PanelDashboardPage = lazy(() =>
 const ProfilePage = lazy(() =>
   import('@/features/profile').then((m) => ({ default: m.ProfilePage })),
 );
-const PanelOrdersPage = lazy(() =>
-  import('@/features/orders').then((m) => ({ default: m.PanelOrdersPage })),
-);
-const PanelOrderDetailPage = lazy(() =>
-  import('@/features/orders').then((m) => ({ default: m.PanelOrderDetailPage })),
+const OrdersPage = lazy(() => import('@/features/orders').then((m) => ({ default: m.OrdersPage })));
+const OrderDetailPage = lazy(() =>
+  import('@/features/orders').then((m) => ({ default: m.OrderDetailPage })),
 );
 const FavoritesPage = lazy(() =>
   import('@/features/favorites').then((m) => ({ default: m.FavoritesPage })),
@@ -131,8 +129,8 @@ export function AppRouter() {
           <Route path="panel" element={<PanelLayout />}>
             <Route index element={<PanelDashboardPage />} />
             <Route path="profile" element={<ProfilePage />} />
-            <Route path="orders" element={<PanelOrdersPage />} />
-            <Route path="orders/:id" element={<PanelOrderDetailPage />} />
+            <Route path="orders" element={<OrdersPage />} />
+            <Route path="orders/:id" element={<OrderDetailPage />} />
             <Route path="favorites" element={<FavoritesPage />} />
             <Route path="reviews" element={<MyReviewsPage />} />
             <Route path="report" element={<ReportIssuePage />} />

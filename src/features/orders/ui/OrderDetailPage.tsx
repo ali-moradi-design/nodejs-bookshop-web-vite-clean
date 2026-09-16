@@ -7,7 +7,7 @@ import { usePreferences } from '@/shared/hooks';
 import { ApiError } from '@/shared/api';
 import { Alert, Badge, Card, CardContent, CardHeader, CardTitle, PageLoader } from '@/shared/ui';
 
-export function PanelOrderDetailPage() {
+export function OrderDetailPage() {
   const params = useParams();
   const id = String(params?.id ?? '');
   const { t } = useTranslation();
