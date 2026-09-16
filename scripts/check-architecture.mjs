@@ -106,6 +106,21 @@ for (const file of walk(ROOT)) {
   }
 }
 
+
+// React / DOM must not appear in domain or application
+for (const file of walk(ROOT)) {
+  const rel = relative(ROOT, file).replaceAll('\\', '/');
+  const layer = layerOf(rel);
+  if (layer !== 'domain' && layer !== 'application') continue;
+  const src = readFileSync(file, 'utf8');
+  if (/from\s+['"]react['"]/.test(src) || /from\s+['"]react-dom/.test(src)) {
+    errors.push(`${rel}: ${layer} must not import React`);
+  }
+  if (/from\s+['"]@tanstack/.test(src)) {
+    errors.push(`${rel}: ${layer} must not import TanStack`);
+  }
+}
+
 const required = [
   'domain',
   'application',
