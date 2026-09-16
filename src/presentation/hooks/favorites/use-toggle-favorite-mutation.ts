@@ -9,13 +9,10 @@ import { favoriteKeys } from '../query-keys';
 export function useToggleFavoriteMutation(bookId: string, isFav: boolean) {
   const { t } = useTranslation();
   const qc = useQueryClient();
-  const { addFavorite, removeFavorite } = useDependencies();
+  const { toggleFavorite } = useDependencies();
 
   return useMutation({
-    mutationFn: async () => {
-      if (isFav) await removeFavorite(bookId);
-      else await addFavorite(bookId);
-    },
+    mutationFn: () => toggleFavorite(bookId, isFav),
     onMutate: async () => {
       await qc.cancelQueries({ queryKey: favoriteKeys.all });
       const previous = qc.getQueryData<Favorite[]>(favoriteKeys.list());

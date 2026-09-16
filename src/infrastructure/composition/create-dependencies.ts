@@ -31,7 +31,9 @@ export function createDependencies(): AppDependencies {
 
   return {
     login: uc.createLogin(auth),
+    loginAndFetchMe: uc.createLoginAndFetchMe(auth),
     register: uc.createRegister(auth),
+    registerAndFetchMe: uc.createRegisterAndFetchMe(auth),
     logout: uc.createLogout(auth),
     fetchMe: uc.createFetchMe(auth),
     updateUser: uc.createUpdateUser(auth),
@@ -63,6 +65,7 @@ export function createDependencies(): AppDependencies {
     getFavorites: uc.createGetFavorites(favorites),
     addFavorite: uc.createAddFavorite(favorites),
     removeFavorite: uc.createRemoveFavorite(favorites),
+    toggleFavorite: uc.createToggleFavorite(favorites),
 
     getReviews: uc.createGetReviews(reviews),
     createReview: uc.createCreateReview(reviews),

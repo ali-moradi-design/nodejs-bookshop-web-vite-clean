@@ -25,27 +25,15 @@ export const useAuthStore = create<AuthState>()(
       setHydrated: (hydrated) => set({ hydrated }),
       login: async (email, password) => {
         const d = getAppDependencies();
-        const res = await d.login(email, password);
-        set({ user: res.user });
-        try {
-          const me = await d.fetchMe();
-          set({ user: me });
-          return me;
-        } catch {
-          return res.user;
-        }
+        const me = await d.loginAndFetchMe(email, password);
+        set({ user: me });
+        return me;
       },
       register: async (input) => {
         const d = getAppDependencies();
-        const res = await d.register(input);
-        set({ user: res.user });
-        try {
-          const me = await d.fetchMe();
-          set({ user: me });
-          return me;
-        } catch {
-          return res.user;
-        }
+        const me = await d.registerAndFetchMe(input);
+        set({ user: me });
+        return me;
       },
       logout: async () => {
         const d = getAppDependencies();

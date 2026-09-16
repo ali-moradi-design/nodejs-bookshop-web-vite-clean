@@ -40,6 +40,8 @@ import type {
 /** Bound use-case facade exposed to presentation (no infrastructure types). */
 export interface AppDependencies {
   login: (email: string, password: string) => Promise<AuthResponse>;
+  loginAndFetchMe: (email: string, password: string) => Promise<User>;
+  registerAndFetchMe: (input: { name: string; email: string; password: string }) => Promise<User>;
   register: (input: { name: string; email: string; password: string }) => Promise<AuthResponse>;
   logout: () => Promise<void>;
   fetchMe: () => Promise<User>;
@@ -72,6 +74,7 @@ export interface AppDependencies {
   getFavorites: () => Promise<Favorite[]>;
   addFavorite: (bookId: string) => Promise<Favorite>;
   removeFavorite: (bookId: string) => Promise<void>;
+  toggleFavorite: (bookId: string, isFavorite: boolean) => Promise<void>;
 
   getReviews: (params?: ReviewListParams) => Promise<Review[]>;
   createReview: (input: CreateReviewInput) => Promise<Review>;
