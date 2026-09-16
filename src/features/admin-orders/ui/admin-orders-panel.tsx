@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { type ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
-import { useOrdersQuery, ORDER_STATUSES, type Order, type OrderStatus } from '@/entities/order';
+import { useOrdersQuery, ORDER_STATUSES, type Order, type OrderStatus } from '@/features/orders';
 import { DataTable } from '@/shared/ui';
 import { formatMoney, formatDate } from '@/shared/lib';
 import { usePreferences } from '@/shared/hooks';

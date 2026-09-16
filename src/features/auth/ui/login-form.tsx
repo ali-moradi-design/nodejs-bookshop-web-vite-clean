@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import type { Resolver } from 'react-hook-form';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
-import { isAdminUser } from '@/entities/user';
+import { isAdminUser } from '../model/types';
 import { ApiError } from '@/shared/api';
 import { Alert, Button, Card, CardContent, CardHeader, CardTitle, Input, Label } from '@/shared/ui';
 import { useAuthStore } from '../model/auth-store';

@@ -6,7 +6,8 @@ import { zNum, zNumOptional } from '@/shared/lib';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Resolver } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { DISCOUNT_TYPES, useDiscountsQuery, type Discount } from '@/entities/discount';
+import { DISCOUNT_TYPES, type Discount } from '../model/types';
+import { useDiscountsQuery } from '../api/use-discounts-query';
 import { DataTable } from '@/shared/ui';
 import { ApiError } from '@/shared/api';
 import {

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import type { Book } from '@/entities/book';
-import { BookCoverImage } from '@/entities/book';
+import type { Book } from '@/features/catalog';
+import { BookCoverImage } from '@/features/catalog';
 import { formatMoney } from '@/shared/lib';
 import { SheetClose, Skeleton } from '@/shared/ui';
 import { CartLineControls } from './cart-line-controls';

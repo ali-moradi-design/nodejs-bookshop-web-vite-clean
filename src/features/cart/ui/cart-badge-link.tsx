@@ -2,8 +2,8 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useCartQuery } from '@/entities/cart';
-import { useCartBooksQueries } from '@/entities/book';
+import { useCartQuery } from '../api/use-cart-query';
+import { useCartBooksQueries } from '@/features/catalog';
 import { formatMoney } from '@/shared/lib';
 import { usePreferences } from '@/shared/hooks';
 import {

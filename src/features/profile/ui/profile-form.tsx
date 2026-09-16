@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Resolver } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { getRoleNames, type User } from '@/entities/user';
+import { getRoleNames, type User } from '@/features/auth';
 import { Button, Card, CardContent, CardHeader, CardTitle, Input, Label } from '@/shared/ui';
 import { useUpdateProfileMutation } from '../model/use-update-profile-mutation';
 

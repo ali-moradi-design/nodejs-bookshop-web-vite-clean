@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { isAdminUser } from '@/entities/user';
+import { isAdminUser } from '../model/types';
 import { Alert, PageLoader } from '@/shared/ui';
 import { useAuthStore } from '../model/auth-store';
 

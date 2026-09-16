@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Resolver } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import type { Review } from '@/entities/review';
+import type { Review } from '../model/types';
 import { zInt } from '@/shared/lib';
 import { Button, Label, Textarea } from '@/shared/ui';
 import { useCreateReviewMutation } from '../model/use-create-review-mutation';

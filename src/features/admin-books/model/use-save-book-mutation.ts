@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
-import { bookKeys, createBook, updateBook } from '@/entities/book';
+import { bookKeys, createBook, updateBook } from '@/features/catalog';
 import { ApiError } from '@/shared/api';
 
 export type SaveBookValues = {

@@ -1,6 +1,6 @@
-# nodejs-bookshop-web-vite
+# nodejs-bookshop-web-vite-feature
 
-**Vite + React + TypeScript SPA** bookstore frontend for the layered Mongo API  
+**Vite + React + TypeScript SPA** bookstore frontend (feature-based architecture) for the layered Mongo API  
 [`nodejs-bookshop-layered`](https://github.com/ali-moradi-design/nodejs-bookshop-layered).
 
 > **This is not Next.js.** It is a client-side SPA created with Vite + React Router.  
@@ -9,8 +9,8 @@
 ## Stack
 
 - **Vite** · React 19 · TypeScript (strict) · React Router
-- Feature-Sliced Design (`src/app`, `src/pages`, `src/widgets`, `src/features`, `src/entities`, `src/shared`)
-- Architecture guide: [`docs/fsd.md`](./docs/fsd.md) · `pnpm check:fsd`
+- **Feature-based architecture** (`src/app`, `src/features`, `src/shared`)
+- Architecture guide: [`docs/feature-based.md`](./docs/feature-based.md) · `pnpm check:architecture`
 - Tailwind CSS v4 · shadcn/ui · Kokonut UI registry (`@kokonutui`)
 - TanStack Query · TanStack Table
 - React Hook Form + Zod
@@ -112,17 +112,17 @@ With an empty `VITE_API_URL`, browser requests go to the Vite origin and are pro
 - **User panel** (`/panel`): dashboard, profile, orders (+ pay), favorites, my reviews, issue report
 - **Admin** (`/admin`): dashboard KPIs, books CRUD + cover upload, orders status, users, roles, permissions, discounts, issue reports, analytics (lazy-loaded)
 
-## FSD layout
+## Feature-based layout
 
 ```
 src/
-  app/          # providers, React Router, global styles
-  pages/        # FSD pages composed into routes
-  widgets/      # shells, grids, tables, KPIs
-  features/     # auth, theme/locale switchers, …
-  entities/     # book, user, cart, order, …
-  shared/       # api client, ui, i18n, config
+  app/          # bootstrap: providers, router, global styles, layout shells
+  features/     # vertical business slices (ui + api + model + public index.ts)
+  shared/       # ui kit, i18n, http client, config, pure lib
 ```
+
+See [`docs/feature-based.md`](./docs/feature-based.md) for the feature map and import rules.
+Run `pnpm check:architecture` to enforce boundaries.
 
 ## Kokonut UI
 

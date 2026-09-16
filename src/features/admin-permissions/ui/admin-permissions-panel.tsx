@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 import { type ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
-import { usePermissionsQuery, type Permission } from '@/entities/permission';
+import { usePermissionsQuery } from '../api/use-permissions-query';
+import { type Permission } from '../model/types';
 import { DataTable, Alert, Badge, PageLoader } from '@/shared/ui';
 import { ApiError } from '@/shared/api';
 import { usePageTitle } from '@/shared/hooks';

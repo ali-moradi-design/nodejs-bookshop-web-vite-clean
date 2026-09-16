@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { User } from '@/entities/user';
-import { isAdminUser } from '@/entities/user';
-import * as userApi from '@/entities/user';
+import type { User } from './types';
+import { isAdminUser } from './types';
+import * as userApi from '../api/user-api';
 
 interface AuthState {
   user: User | null;

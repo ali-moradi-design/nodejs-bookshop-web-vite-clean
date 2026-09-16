@@ -6,7 +6,7 @@ import {
   useIssuesQuery,
   type IssueReport,
   type IssueStatus,
-} from '@/entities/report';
+} from '@/features/reports';
 import { DataTable } from '@/shared/ui';
 import { formatDate } from '@/shared/lib';
 import { usePreferences } from '@/shared/hooks';

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
-import { favoriteKeys, removeFavorite } from '@/entities/favorite';
+import { favoriteKeys, removeFavorite } from '../api/favorite-api';
 import { ApiError } from '@/shared/api';
 
 export function useRemoveFavoriteMutation(bookId: string) {

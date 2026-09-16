@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { type ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
-import { getRoleNames, useUsersQuery, type User } from '@/entities/user';
+import { getRoleNames, useUsersQuery, type User } from '@/features/auth';
 import { DataTable } from '@/shared/ui';
 import { ApiError } from '@/shared/api';
 import { Alert, Badge, Button, PageLoader } from '@/shared/ui';

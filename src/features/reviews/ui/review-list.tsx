@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import type { Review } from '@/entities/review';
+import type { Review } from '../model/types';
 import { formatDate } from '@/shared/lib';
 import { usePreferences } from '@/shared/hooks';
 import { EmptyState } from '@/shared/ui';

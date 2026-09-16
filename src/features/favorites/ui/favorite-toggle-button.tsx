@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useFavoritesQuery } from '@/entities/favorite';
+import { useFavoritesQuery } from '../api/use-favorites-query';
 import { Button } from '@/shared/ui';
 import { cn } from '@/shared/lib';
 import { useToggleFavoriteMutation } from '../model/use-toggle-favorite-mutation';

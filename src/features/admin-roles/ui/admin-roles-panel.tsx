@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 import { type ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
-import { useRolesQuery, type Role } from '@/entities/role';
+import { useRolesQuery } from '../api/use-roles-query';
+import { type Role } from '../model/types';
 import { DataTable, Alert, Badge, PageLoader } from '@/shared/ui';
 import { ApiError } from '@/shared/api';
 import { usePageTitle } from '@/shared/hooks';

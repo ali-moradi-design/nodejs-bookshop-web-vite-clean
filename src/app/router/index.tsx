@@ -1,74 +1,76 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { AppProviders } from '@/app/providers';
-import { StorefrontShell } from '@/widgets/storefront-shell';
-import { PanelShell } from '@/widgets/panel-shell';
-import { AdminShell } from '@/widgets/admin-shell';
-import { Header } from '@/widgets/header';
-import { Footer } from '@/widgets/footer';
+import { StorefrontShell } from '@/app/layout';
+import { PanelShell } from '@/app/layout';
+import { AdminShell } from '@/app/layout';
+import { Header } from '@/app/layout';
+import { Footer } from '@/app/layout';
 import { RequireAuth } from '@/features/auth';
 import { PageLoader } from '@/shared/ui';
 
-const HomePage = lazy(() => import('@/pages/home').then((m) => ({ default: m.HomePage })));
-const CatalogPage = lazy(() => import('@/pages/catalog').then((m) => ({ default: m.CatalogPage })));
+const HomePage = lazy(() => import('@/features/home').then((m) => ({ default: m.HomePage })));
+const CatalogPage = lazy(() =>
+  import('@/features/catalog').then((m) => ({ default: m.CatalogPage })),
+);
 const BookDetailPage = lazy(() =>
-  import('@/pages/book-detail').then((m) => ({ default: m.BookDetailPage })),
+  import('@/features/catalog').then((m) => ({ default: m.BookDetailPage })),
 );
-const CartPage = lazy(() => import('@/pages/cart').then((m) => ({ default: m.CartPage })));
+const CartPage = lazy(() => import('@/features/cart').then((m) => ({ default: m.CartPage })));
 const CheckoutPage = lazy(() =>
-  import('@/pages/checkout').then((m) => ({ default: m.CheckoutPage })),
+  import('@/features/checkout').then((m) => ({ default: m.CheckoutPage })),
 );
-const LoginPage = lazy(() => import('@/pages/login').then((m) => ({ default: m.LoginPage })));
+const LoginPage = lazy(() => import('@/features/auth').then((m) => ({ default: m.LoginPage })));
 const RegisterPage = lazy(() =>
-  import('@/pages/register').then((m) => ({ default: m.RegisterPage })),
+  import('@/features/auth').then((m) => ({ default: m.RegisterPage })),
 );
 const PanelDashboardPage = lazy(() =>
-  import('@/pages/panel/dashboard').then((m) => ({ default: m.PanelDashboardPage })),
+  import('@/features/profile').then((m) => ({ default: m.PanelDashboardPage })),
 );
 const ProfilePage = lazy(() =>
-  import('@/pages/panel/profile').then((m) => ({ default: m.ProfilePage })),
+  import('@/features/profile').then((m) => ({ default: m.ProfilePage })),
 );
 const PanelOrdersPage = lazy(() =>
-  import('@/pages/panel/orders').then((m) => ({ default: m.PanelOrdersPage })),
+  import('@/features/orders').then((m) => ({ default: m.PanelOrdersPage })),
 );
 const PanelOrderDetailPage = lazy(() =>
-  import('@/pages/panel/order-detail').then((m) => ({ default: m.PanelOrderDetailPage })),
+  import('@/features/orders').then((m) => ({ default: m.PanelOrderDetailPage })),
 );
 const FavoritesPage = lazy(() =>
-  import('@/pages/panel/favorites').then((m) => ({ default: m.FavoritesPage })),
+  import('@/features/favorites').then((m) => ({ default: m.FavoritesPage })),
 );
 const MyReviewsPage = lazy(() =>
-  import('@/pages/panel/reviews').then((m) => ({ default: m.MyReviewsPage })),
+  import('@/features/reviews').then((m) => ({ default: m.MyReviewsPage })),
 );
 const ReportIssuePage = lazy(() =>
-  import('@/pages/panel/report').then((m) => ({ default: m.ReportIssuePage })),
+  import('@/features/reports').then((m) => ({ default: m.ReportIssuePage })),
 );
 const AdminDashboardPage = lazy(() =>
-  import('@/pages/admin/dashboard').then((m) => ({ default: m.AdminDashboardPage })),
+  import('@/features/admin-dashboard').then((m) => ({ default: m.AdminDashboardPage })),
 );
 const AdminBooksPage = lazy(() =>
-  import('@/pages/admin/books').then((m) => ({ default: m.AdminBooksPage })),
+  import('@/features/admin-books').then((m) => ({ default: m.AdminBooksPage })),
 );
 const AdminOrdersPage = lazy(() =>
-  import('@/pages/admin/orders').then((m) => ({ default: m.AdminOrdersPage })),
+  import('@/features/admin-orders').then((m) => ({ default: m.AdminOrdersPage })),
 );
 const AdminUsersPage = lazy(() =>
-  import('@/pages/admin/users').then((m) => ({ default: m.AdminUsersPage })),
+  import('@/features/admin-users').then((m) => ({ default: m.AdminUsersPage })),
 );
 const AdminRolesPage = lazy(() =>
-  import('@/pages/admin/roles').then((m) => ({ default: m.AdminRolesPage })),
+  import('@/features/admin-roles').then((m) => ({ default: m.AdminRolesPage })),
 );
 const AdminPermissionsPage = lazy(() =>
-  import('@/pages/admin/permissions').then((m) => ({ default: m.AdminPermissionsPage })),
+  import('@/features/admin-permissions').then((m) => ({ default: m.AdminPermissionsPage })),
 );
 const AdminDiscountsPage = lazy(() =>
-  import('@/pages/admin/discounts').then((m) => ({ default: m.AdminDiscountsPage })),
+  import('@/features/admin-discounts').then((m) => ({ default: m.AdminDiscountsPage })),
 );
 const AdminReportsPage = lazy(() =>
-  import('@/pages/admin/reports').then((m) => ({ default: m.AdminReportsPage })),
+  import('@/features/admin-reports').then((m) => ({ default: m.AdminReportsPage })),
 );
 const AdminAnalyticsPage = lazy(() =>
-  import('@/pages/admin/analytics').then((m) => ({ default: m.AdminAnalyticsPage })),
+  import('@/features/admin-dashboard').then((m) => ({ default: m.AdminAnalyticsPage })),
 );
 
 const RouteFallback = () => <PageLoader />;

@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
-import { addCartItem, cartKeys, type Cart } from '@/entities/cart';
+import { addCartItem, cartKeys } from '../api/cart-api';
+import { type Cart } from './types';
 import { ApiError } from '@/shared/api';
 
 export function useAddToCartMutation(bookId: string, quantity = 1) {

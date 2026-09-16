@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
-import { deleteDiscount, discountKeys } from '@/entities/discount';
+import { deleteDiscount, discountKeys } from '../api/discount-api';
 import { ApiError } from '@/shared/api';
 
 export function useDeleteDiscountMutation() {

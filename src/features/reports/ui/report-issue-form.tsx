@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Resolver } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { ISSUE_TYPES } from '@/entities/report';
+import { ISSUE_TYPES } from '../model/types';
 import {
   Button,
   Card,

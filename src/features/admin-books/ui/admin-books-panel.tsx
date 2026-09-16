@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import type { Resolver } from 'react-hook-form';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
-import { uploadBookCover, useBooksQuery, type Book } from '@/entities/book';
+import { uploadBookCover, useBooksQuery, type Book } from '@/features/catalog';
 import { DataTable } from '@/shared/ui';
 import { formatMoney } from '@/shared/lib';
 import { usePreferences } from '@/shared/hooks';
