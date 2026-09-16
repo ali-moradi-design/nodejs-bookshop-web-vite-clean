@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { useOrdersByStatusQuery, useRevenueQuery, useTopBooksQuery } from '@/features/reports';
+import { useOrdersByStatusQuery } from '../api/use-orders-by-status-query';
+import { useRevenueQuery } from '../api/use-revenue-query';
+import { useTopBooksQuery } from '../api/use-top-books-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui';
 import { formatMoney } from '@/shared/lib';
 import { usePreferences } from '@/shared/hooks';

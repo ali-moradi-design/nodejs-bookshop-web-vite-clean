@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { reportKeys, fetchRevenue } from './report-api';
+import { analyticsKeys, fetchRevenue } from './analytics-api';
 
 export function useRevenueQuery(from?: string, to?: string) {
   return useQuery({
-    queryKey: reportKeys.revenue(from, to),
+    queryKey: analyticsKeys.revenue(from, to),
     queryFn: async () => (await fetchRevenue(from, to)).data,
   });
 }

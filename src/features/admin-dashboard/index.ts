@@ -13,3 +13,20 @@ export type { KpiItem } from './ui/kpi-cards';
 export { AdminCharts } from './ui/admin-charts';
 export { AdminDashboardPage } from './ui/AdminDashboardPage';
 export { AdminAnalyticsPage } from './ui/AdminAnalyticsPage';
+
+export type {
+  RevenueSummary,
+  OrdersByStatusItem,
+  TopBookItem,
+  SalesByDateItem,
+} from './model/analytics-types';
+export {
+  analyticsKeys,
+  fetchRevenue,
+  fetchOrdersByStatus,
+  fetchTopBooks,
+  fetchSalesByDate,
+} from './api/analytics-api';
+export { useRevenueQuery } from './api/use-revenue-query';
+export { useOrdersByStatusQuery } from './api/use-orders-by-status-query';
+export { useTopBooksQuery } from './api/use-top-books-query';

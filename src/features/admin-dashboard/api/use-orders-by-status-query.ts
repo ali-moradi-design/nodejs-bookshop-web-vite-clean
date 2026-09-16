@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { reportKeys, fetchOrdersByStatus } from './report-api';
+import { analyticsKeys, fetchOrdersByStatus } from './analytics-api';
 
 export function useOrdersByStatusQuery() {
   return useQuery({
-    queryKey: reportKeys.ordersByStatus(),
+    queryKey: analyticsKeys.ordersByStatus(),
     queryFn: async () => (await fetchOrdersByStatus()).data,
   });
 }
