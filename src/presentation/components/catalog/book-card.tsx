@@ -9,7 +9,7 @@ import { BookCoverImage } from './book-cover-image';
 
 interface BookCardProps {
   book: Book;
-  /** Optional overlay actions (e.g. favorite) — composed by parent features */
+  /** Optional overlay actions (e.g. favorite) — composed by parent screens */
   actions?: React.ReactNode;
 }
 
