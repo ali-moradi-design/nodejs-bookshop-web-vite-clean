@@ -70,4 +70,12 @@ Root chrome composed by the router (not domain features):
 pnpm check:architecture
 ```
 
-Fails on leftover FSD folders, deep cross-feature imports, and imports of deleted layers.
+Fails on:
+
+- leftover FSD folders (`entities` / `widgets` / `pages`)
+- deep cross-feature imports (`@/features/x/...`)
+- `shared` importing features, or features importing `app`
+- relative escapes into another feature
+- missing feature / `app/layout` public `index.ts`
+
+ESLint `no-restricted-imports` also blocks FSD paths and deep feature imports.

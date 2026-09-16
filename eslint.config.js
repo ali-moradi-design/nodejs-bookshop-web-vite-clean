@@ -26,6 +26,28 @@ export default tseslint.config(
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
       '@typescript-eslint/no-explicit-any': 'off',
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: [
+                '@/entities',
+                '@/entities/*',
+                '@/widgets',
+                '@/widgets/*',
+                '@/pages',
+                '@/pages/*',
+              ],
+              message: 'FSD layers removed — use @/features/* or @/app/layout.',
+            },
+            {
+              group: ['@/features/*/*', '@/features/*/*/*'],
+              message: 'Import features only via public API: @/features/<name>.',
+            },
+          ],
+        },
+      ],
     },
   },
 );
