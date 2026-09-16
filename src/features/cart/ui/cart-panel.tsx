@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useCartQuery } from '../api/use-cart-query';
-import { BookCoverImage, useCartBooksQueries } from '@/features/catalog';
+import { BookCoverImage } from '@/features/catalog';
+import { useCartBooksQueries } from '../api/use-cart-books-queries';
 import { useAuthStore } from '@/features/auth';
 import { CartLineControls } from './cart-line-controls';
 import { ClearCartButton } from './clear-cart-button';

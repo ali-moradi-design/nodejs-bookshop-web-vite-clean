@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useCartQuery } from '../api/use-cart-query';
-import { useCartBooksQueries } from '@/features/catalog';
+import { useCartBooksQueries } from '../api/use-cart-books-queries';
 import { formatMoney } from '@/shared/lib';
 import { usePreferences } from '@/shared/hooks';
 import {

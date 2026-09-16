@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { userKeys, fetchUsers } from './user-api';
+import { adminUserKeys, fetchUsers } from './users-api';
 
 export function useUsersQuery() {
   return useQuery({
-    queryKey: userKeys.list(),
+    queryKey: adminUserKeys.list(),
     queryFn: async () => (await fetchUsers()).data,
   });
 }

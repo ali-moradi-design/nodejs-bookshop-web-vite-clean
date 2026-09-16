@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
-import { deleteUser, userKeys } from '@/features/auth';
+import { deleteUser, adminUserKeys } from '../api/users-api';
 import { ApiError } from '@/shared/api';
 
 export function useDeleteUserMutation() {
@@ -12,7 +12,7 @@ export function useDeleteUserMutation() {
     mutationFn: (id: string) => deleteUser(id),
     onSuccess: () => {
       toast.success('User deleted');
-      void qc.invalidateQueries({ queryKey: userKeys.all });
+      void qc.invalidateQueries({ queryKey: adminUserKeys.all });
     },
     onError: (e) => toast.error(e instanceof ApiError ? e.message : t('common.error')),
   });

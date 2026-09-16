@@ -9,6 +9,7 @@ export {
   checkoutCart,
 } from './api/cart-api';
 export { useCartQuery } from './api/use-cart-query';
+export { useCartBooksQueries } from './api/use-cart-books-queries';
 export { AddToCartButton } from './ui/add-to-cart-button';
 export { CartLineControls } from './ui/cart-line-controls';
 export { ClearCartButton } from './ui/clear-cart-button';
