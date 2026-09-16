@@ -24,8 +24,8 @@ const LoginPage = lazy(() => import('@/features/auth').then((m) => ({ default: m
 const RegisterPage = lazy(() =>
   import('@/features/auth').then((m) => ({ default: m.RegisterPage })),
 );
-const PanelDashboardPage = lazy(() =>
-  import('@/features/profile').then((m) => ({ default: m.PanelDashboardPage })),
+const DashboardPage = lazy(() =>
+  import('@/features/profile').then((m) => ({ default: m.DashboardPage })),
 );
 const ProfilePage = lazy(() =>
   import('@/features/profile').then((m) => ({ default: m.ProfilePage })),
@@ -127,7 +127,7 @@ export function AppRouter() {
           </Route>
 
           <Route path="panel" element={<PanelLayout />}>
-            <Route index element={<PanelDashboardPage />} />
+            <Route index element={<DashboardPage />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="orders" element={<OrdersPage />} />
             <Route path="orders/:id" element={<OrderDetailPage />} />

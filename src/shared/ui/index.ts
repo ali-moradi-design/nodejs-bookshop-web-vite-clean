@@ -56,3 +56,4 @@ export {
   SheetTitle,
   SheetDescription,
 } from './sheet';
+export { KpiCards, type KpiItem } from './kpi-cards';

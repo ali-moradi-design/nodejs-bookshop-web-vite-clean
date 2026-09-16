@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui';
+import { Card, CardContent, CardHeader, CardTitle } from './card';
 import { cn } from '@/shared/lib';
 
 export interface KpiItem {

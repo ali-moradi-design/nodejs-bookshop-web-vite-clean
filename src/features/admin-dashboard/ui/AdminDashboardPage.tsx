@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useDashboardSummaryQuery } from '../api/use-dashboard-summary-query';
 import { useLowStockQuery } from '../api/use-low-stock-query';
 import { useRecentOrdersQuery } from '../api/use-recent-orders-query';
-import { KpiCards } from './kpi-cards';
+import { KpiCards } from '@/shared/ui';
 import { formatMoney, formatDate } from '@/shared/lib';
 import { usePreferences } from '@/shared/hooks';
 import { Alert, Badge, Card, CardContent, CardHeader, CardTitle, PageLoader } from '@/shared/ui';

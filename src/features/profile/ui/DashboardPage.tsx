@@ -4,10 +4,10 @@ import { useAuthStore } from '@/features/auth';
 import { useOrdersQuery } from '@/features/orders';
 import { useFavoritesQuery } from '@/features/favorites';
 import { useReviewsQuery } from '@/features/reviews';
-import { KpiCards } from '@/features/admin-dashboard';
+import { KpiCards } from '@/shared/ui';
 import { Button, Card, CardContent, CardHeader, CardTitle, PageLoader } from '@/shared/ui';
 
-export function PanelDashboardPage() {
+export function DashboardPage() {
   const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
 
