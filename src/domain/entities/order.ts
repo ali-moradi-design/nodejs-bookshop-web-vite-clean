@@ -55,3 +55,9 @@ export interface Order {
   createdAt: string;
   updatedAt: string;
 }
+
+export const isOrderPayable = (order: Order | null | undefined): boolean =>
+  order?.status === 'pending_payment' && order.payment.status === 'pending';
+
+export const orderLineCount = (order: Order | null | undefined): number =>
+  order?.items.reduce((sum, i) => sum + i.quantity, 0) ?? 0;

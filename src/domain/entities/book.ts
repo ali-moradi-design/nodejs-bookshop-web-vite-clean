@@ -80,3 +80,9 @@ export type BookCategory = (typeof BOOK_CATEGORIES)[number];
 /** Dual-range price slider bounds (seed max ≈ 90). */
 export const BOOK_PRICE_MIN = 0;
 export const BOOK_PRICE_MAX = 100;
+
+export const isBookInStock = (book: Book | null | undefined): boolean =>
+  Boolean(book && book.stock > 0);
+
+export const bookPrimaryCategory = (book: Book | null | undefined): string | undefined =>
+  book?.categories?.[0];

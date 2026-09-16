@@ -19,3 +19,9 @@ export interface CheckoutInput {
   shippingAddress: ShippingAddress;
   discountCode?: string;
 }
+
+export const cartItemCount = (cart: Cart | null | undefined): number =>
+  cart?.items.reduce((sum, i) => sum + i.quantity, 0) ?? 0;
+
+export const findCartItem = (cart: Cart | null | undefined, bookId: string) =>
+  cart?.items.find((i) => i.bookId === bookId);
