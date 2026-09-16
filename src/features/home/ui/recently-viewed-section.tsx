@@ -4,22 +4,7 @@ import { BookCard, type Book } from '@/features/catalog';
 import { FavoriteToggleButton } from '@/features/favorites';
 import { useAuthStore } from '@/features/auth';
 import { readRecentlyViewed, type RecentBookSnapshot } from '../model/recently-viewed';
-
-function snapshotToBook(s: RecentBookSnapshot): Book {
-  return {
-    id: s.id,
-    title: s.title,
-    author: s.author,
-    description: '',
-    price: s.price,
-    currency: s.currency,
-    stock: 1,
-    coverImageUrl: s.coverImageUrl,
-    featured: false,
-    createdAt: new Date(s.viewedAt).toISOString(),
-    updatedAt: new Date(s.viewedAt).toISOString(),
-  };
-}
+import { snapshotToBook } from '../lib/snapshot-to-book';
 
 export function RecentlyViewedSection({ excludeId }: { excludeId?: string }) {
   const { t } = useTranslation();

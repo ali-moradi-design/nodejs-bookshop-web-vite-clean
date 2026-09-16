@@ -3,12 +3,13 @@ import { useAuthStore } from '@/features/auth';
 import { useReviewsQuery } from '../api/use-reviews-query';
 import { LoveRating } from './love-rating';
 import { formatDate } from '@/shared/lib';
-import { usePreferences } from '@/shared/hooks';
+import { usePreferences, usePageTitle } from '@/shared/hooks';
 import { Alert, EmptyState, PageLoader } from '@/shared/ui';
 import { ApiError } from '@/shared/api';
 
 export function MyReviewsPage() {
   const { t } = useTranslation();
+  usePageTitle(t('nav.reviews'));
   const locale = usePreferences((s) => s.locale);
   const user = useAuthStore((s) => s.user);
   const { data, isLoading, error } = useReviewsQuery(
